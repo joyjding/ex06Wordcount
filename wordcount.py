@@ -15,12 +15,8 @@ f_words = sub("[/!?,-:\"_';]", " ", f_text).lower().split()
 f_dict = {}
 
 for word in f_words:
-	
-		if f_dict.get(word) == None: #use get
-			f_dict[word] = 1
-		else: 
-			f_dict[word]+=1 
-					
+	f_dict[word] = f_dict.get(word, 0) + 1
+				
 # sorts alphabetically
 sort_f_dict = sorted(f_dict)
 
@@ -29,14 +25,13 @@ for word in sort_f_dict:
 	print word, ":", f_dict[word]
 
 #sorts by highest frequency
+def extract_val(t):
+	return t[1], t[0]
 
-sort_freq_dict = sorted(f_dict, key=f_dict.get)
+sort_freq_dict = sorted(f_dict.items(), key=extract_val)
+# print sort_freq_dict
 for word in sort_freq_dict[::-1]:
-	print word, f_dict[word]
-
-# for number in f_dict.itervalues():
-# 	print number
-
+	print word
 
 
 
